@@ -1,0 +1,32 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">
+              <img src="assets/images/first-tech-logo.png" class="logo">
+            </a>
+            <span class="navbar-brand">Account Management</span>
+        </div>
+        
+        <ul class="nav navbar-nav">
+            <li><a routerLink="/user" routerLinkActive="active">Users</a></li>
+            <li><a routerLink="/user/create" routerLinkActive="active">New User</a></li>
+            <li class="dropdown" dropdown> <!-- {1} -->
+                <a dropdownToggle role="button"> <!-- {2} -->
+                  Dropdown <span class="caret"></span></a>
+                <ul *dropdownMenu class="dropdown-menu"> <!-- {3} -->
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">One more separated link</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+    </div>
+</nav>

@@ -1,0 +1,9 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.navbar,
+.navbar-default {
+    line-height: 125px;
+    height: 125px;
+    padding-top: 0;
+}
