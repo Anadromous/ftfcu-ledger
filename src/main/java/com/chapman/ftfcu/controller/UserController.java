@@ -29,6 +29,7 @@ public class UserController {
 	private List<User> users = new ArrayList<>();
 
 	UserController() {
+		
 	}
 
 	@RequestMapping(method = RequestMethod.GET)

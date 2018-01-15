@@ -20,22 +20,22 @@ public class FtfcuLedgerApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception{
-		User user1 = new User();
-		user1.setFirstName("John");
-		user1.setLastName("Adams");
-		user1.setUsername("jadams");
-		user1.setEmail("jadams@gmail.com");
-		
-		userService.createUser(user1);
-		
-		User user2 = new User();
-		user2.setFirstName("John");
-		user2.setLastName("Admin");
-		user2.setUsername("jadmin");
-		user2.setEmail("jadmin@gmail.com");
-		
-		userService.createUser(user2);
-		
+//		User user1 = new User();
+//		user1.setFirstName("John");
+//		user1.setLastName("Adams");
+//		user1.setUsername("jadams");
+//		user1.setEmail("jadams@gmail.com");
+//		
+//		userService.createUser(user1);
+//		
+//		User user2 = new User();
+//		user2.setFirstName("John");
+//		user2.setLastName("Admin");
+//		user2.setUsername("jadmin");
+//		user2.setEmail("jadmin@gmail.com");
+//		
+//		userService.createUser(user2);
+		System.out.println("command line runner...");
 		
 	}
 }
