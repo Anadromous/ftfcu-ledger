@@ -4,26 +4,20 @@
 package com.chapman.util;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.joda.time.DateTime;
 import org.springframework.util.StringUtils;
 
-import com.chapman.dao.RawDataDao;
-import com.chapman.dao.hibernate.RawDataDaoHibernate;
 import com.chapman.ftfcu.model.RawBankCheckingData;
-import com.chapman.service.RawDataManager;
-import com.chapman.service.impl.RawDataManagerImpl;
 
 /**
  * @author OR0189783
@@ -37,13 +31,9 @@ public class CSVLoader {
 	}
 
 	static final Log log = LogFactory.getLog(CSVLoader.class);
-	RawDataManager manager = new RawDataManagerImpl();
-	RawDataDao dao = new RawDataDaoHibernate();
 	private static SessionFactory sessionFactory;
-	private static Configuration configuration = new Configuration()
-			.configure();
 	CurrencyConverter c = new CurrencyConverter();
-	DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy");
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	/**
 	 * @param args
@@ -97,14 +87,13 @@ public class CSVLoader {
 			conn.setAutoCommit(false);
 			pst = conn.prepareStatement(sql);
 			list = util.readCsvFile(file);
-			DateTime dt;
 			for (RawBankCheckingData record : list) {
 				//Transaction ID	Posting Date	Effective Date	Transaction Type	
 				//Amount	Check Number	Reference Number	Payee	Memo	Transaction Category	Type	Balance
 				log.debug("setting "+record.getTransactionId());
 				pst.setString(1, record.getTransactionId());
-				pst.setDate(2, new java.sql.Date(record.getPostingDate().getTime()));
-				pst.setDate(3, new java.sql.Date(record.getEffectiveDate().getTime()));
+				pst.setDate(2, Date.valueOf(record.getPostingDate()));
+				pst.setDate(3, Date.valueOf(record.getEffectiveDate()));
 				pst.setString(4, record.getTransactionType());
 				pst.setDouble(5, record.getAmount());
 				if(record.getCheckNumber() != null)

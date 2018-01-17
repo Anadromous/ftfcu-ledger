@@ -4,6 +4,7 @@
 package com.chapman.ftfcu.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  * @author or0189783
@@ -30,8 +32,8 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	//Amount	Check Number	Reference Number	Payee	Memo	Transaction Category	Type	Balance
 	private Long id;
 	private String transactionId; //Transaction ID
-	private Date postingDate; //Posting Date	
-	private Date effectiveDate; //Effective Date
+	private LocalDate postingDate; //Posting Date	
+	private LocalDate effectiveDate; //Effective Date
 	private String transactionType;//Transaction Type	
 	private Double amount; //Amount	
 	private Long checkNumber; //Check_Number
@@ -43,13 +45,14 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	private String type; //Type	
 	private Double balance; //Balance	
 	private Category category; //category Id
+	private String greaterOrLess;
 	
 	
 	public RawBankCheckingData() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public RawBankCheckingData(String transactionId, Date postingDate, Date effectiveDate, String transactionType, Double amount,
+	public RawBankCheckingData(String transactionId, LocalDate postingDate, LocalDate effectiveDate, String transactionType, Double amount,
 			Long checkNumber, String referenceNumber, String payee, String memo, String extDesc, String transactionCategory, String type, Double balance) {
 		this.transactionId = transactionId;
 		this.postingDate = postingDate;
@@ -92,7 +95,7 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	 */
 	@Column(name = "posting_date")
 	@Temporal(TemporalType.DATE)
-	public Date getPostingDate() {
+	public LocalDate getPostingDate() {
 		return postingDate;
 	}
 
@@ -101,7 +104,7 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	 */
 	@Column(name = "effective_date")
 	@Temporal(TemporalType.DATE)
-	public Date getEffectiveDate() {
+	public LocalDate getEffectiveDate() {
 		return effectiveDate;
 	}
 
@@ -201,6 +204,11 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	public Category getCategory() {
 		return category;
 	}
+	
+	@Transient
+	public String getGreaterOrLess() {
+		return greaterOrLess;
+	}
 
 	/**
 	 * @param transactionId the transactionId to set
@@ -240,14 +248,14 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	/**
 	 * @param postingDate the postingDate to set
 	 */
-	public void setPostingDate(Date postingDate) {
+	public void setPostingDate(LocalDate postingDate) {
 		this.postingDate = postingDate;
 	}
 
 	/**
 	 * @param effectiveDate the effectiveDate to set
 	 */
-	public void setEffectiveDate(Date effectiveDate) {
+	public void setEffectiveDate(LocalDate effectiveDate) {
 		this.effectiveDate = effectiveDate;
 	}
 
@@ -298,6 +306,10 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	 */
 	public void setType(String type) {
 		this.type = type;
+	}
+	
+		public void setGreaterOrLess(String greaterOrLess) {
+		this.greaterOrLess = greaterOrLess;
 	}
 
 	/* (non-Javadoc)

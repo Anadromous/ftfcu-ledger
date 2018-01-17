@@ -13,7 +13,7 @@ import java.util.Comparator;
  *
  * @see org.apache.struts.util.LabelValueBean
  */
-public class LabelValue implements Comparable, Serializable {
+public class LabelValue implements Comparable<Object>, Serializable {
 
     private static final long serialVersionUID = 3689355407466181430L;
 
