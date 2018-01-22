@@ -15,13 +15,18 @@ import com.chapman.ftfcu.service.UserService;
  * Created by pchapman@easystreet.net on Jan 12, 2018
  */
 
+
 @Service
 public class UserServiceImpl implements UserService {
 
 	private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 
-	@Autowired
+	
 	private UserRepository userRepository;
+
+	public void setUserRepository(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
 	@Override
 	public User createUser(User user) {

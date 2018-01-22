@@ -14,7 +14,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.StringUtils;
 
-import com.chapman.ftfcu.model.RawBankCheckingData;
+import com.chapman.ftfcu.model.CheckingData;
 
 /**
  * @author ashraf_sarhan
@@ -24,12 +24,12 @@ public class CsvFileReaderUtil {
 	
 	protected final Log log = LogFactory.getLog(getClass());
 
-	public List<RawBankCheckingData> readCsvFile(String fileName) {
+	public List<CheckingData> readCsvFile(String fileName) {
 		FileReader fileReader = null;
 		CSVParser csvFileParser = null;
 		//Create the CSVFormat object with the header mapping
         CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader();
-        List<RawBankCheckingData> checkRecords = new ArrayList<RawBankCheckingData>();
+        List<CheckingData> checkRecords = new ArrayList<CheckingData>();
         log.debug("entering the try............");
         try {
             //initialize FileReader object
@@ -43,24 +43,8 @@ public class CsvFileReaderUtil {
             log.debug("csvRecords............ "+csvRecords.size());
             for (CSVRecord record : csvRecords) {
             	log.debug(record.toString());
-/*            	String checkNumber = record.get("Check_Number");
-				if(!StringUtils.isBlank(checkNumber)){
-					checkNumber = "0";
-				}
-				//do it via constructor
-				RawBankCheckingData data = new RawBankCheckingData(df1.parse(record.get("Transaction_Date")), 
-						record.get("Transaction_ID"),
-						record.get("TranDesc"),
-						record.get("ExtDesc"),
-						record.get("Description"), 
-						(Double)c.convert(Double.class, record.get("Fee")),
-						(Double)c.convert(Double.class, record.get("Amount")), 
-						(Double)c.convert(Double.class, record.get("Other_Charges")), 
-						(Double)c.convert(Double.class, record.get("Balance")),
-						df1.parse(record.get("Post_Date")),
-						new Long(checkNumber));*/
-            	
-            	RawBankCheckingData data = new RawBankCheckingData();
+          	
+            	CheckingData data = new CheckingData();
             	//"Transaction ID", "Posting Date", "Effective Date", "Transaction Type", "Amount", 
             	//"Check Number", "Reference Number", "Payee", "Memo", "Transaction Category", "Type", "Balance"
 				data.setTransactionId(record.get("Transaction ID"));

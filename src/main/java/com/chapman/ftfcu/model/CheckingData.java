@@ -25,7 +25,7 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "raw_data")
-public class RawBankCheckingData extends BaseObject implements Serializable {
+public class CheckingData extends BaseObject implements Serializable {
 
 	private static final long serialVersionUID = 2221751117227020663L;
 	//Transaction ID	Posting Date	Effective Date	Transaction Type	
@@ -48,11 +48,11 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	private String greaterOrLess;
 	
 	
-	public RawBankCheckingData() {
+	public CheckingData() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public RawBankCheckingData(String transactionId, LocalDate postingDate, LocalDate effectiveDate, String transactionType, Double amount,
+	public CheckingData(String transactionId, LocalDate postingDate, LocalDate effectiveDate, String transactionType, Double amount,
 			Long checkNumber, String referenceNumber, String payee, String memo, String extDesc, String transactionCategory, String type, Double balance) {
 		this.transactionId = transactionId;
 		this.postingDate = postingDate;
@@ -94,7 +94,6 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	 * @return the postingDate
 	 */
 	@Column(name = "posting_date")
-	@Temporal(TemporalType.DATE)
 	public LocalDate getPostingDate() {
 		return postingDate;
 	}
@@ -103,7 +102,6 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	 * @return the effectiveDate
 	 */
 	@Column(name = "effective_date")
-	@Temporal(TemporalType.DATE)
 	public LocalDate getEffectiveDate() {
 		return effectiveDate;
 	}
@@ -317,7 +315,7 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "RawBankCheckingData [transactionId=" + transactionId + ", postingDate=" + postingDate
+		return "CheckingData [transactionId=" + transactionId + ", postingDate=" + postingDate
 				+ ", effectiveDate=" + effectiveDate + ", transactionType=" + transactionType + ", amount=" + amount
 				+ ", checkNumber=" + checkNumber + ", referenceNumber=" + referenceNumber + ", payee=" + payee
 				+ ", memo=" + memo + ", extDesc = "+extDesc+ ", transactionCategory=" + transactionCategory + ", type=" + type + ", balance="
@@ -359,7 +357,7 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		RawBankCheckingData other = (RawBankCheckingData) obj;
+		CheckingData other = (CheckingData) obj;
 		if (amount == null) {
 			if (other.amount != null)
 				return false;

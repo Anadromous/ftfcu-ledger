@@ -29,7 +29,7 @@ public class Category extends BaseObject implements Serializable {
 	private String description;
 	
 	@OneToMany(mappedBy="category")
-    private List<RawBankCheckingData> categories;
+    private List<CheckingData> categories;
 	
 	/**
 	 * @return the id

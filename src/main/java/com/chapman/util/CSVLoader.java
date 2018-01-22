@@ -17,7 +17,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
 import org.springframework.util.StringUtils;
 
-import com.chapman.ftfcu.model.RawBankCheckingData;
+import com.chapman.ftfcu.model.CheckingData;
 
 /**
  * @author OR0189783
@@ -76,7 +76,7 @@ public class CSVLoader {
 	private void loadCsvData(String file, Connection conn) {
 		System.out.println("File: " + file);
 		CsvFileReaderUtil util = new CsvFileReaderUtil();
-		List<RawBankCheckingData> list = new ArrayList<RawBankCheckingData>();
+		List<CheckingData> list = new ArrayList<CheckingData>();
 		PreparedStatement pst = null;
 		String sql = "insert into raw_data (trans_id, posting_date, effective_date, trans_type, "
 				+ "amount, check_number, ref_number, payee, "
@@ -87,7 +87,7 @@ public class CSVLoader {
 			conn.setAutoCommit(false);
 			pst = conn.prepareStatement(sql);
 			list = util.readCsvFile(file);
-			for (RawBankCheckingData record : list) {
+			for (CheckingData record : list) {
 				//Transaction ID	Posting Date	Effective Date	Transaction Type	
 				//Amount	Check Number	Reference Number	Payee	Memo	Transaction Category	Type	Balance
 				log.debug("setting "+record.getTransactionId());
