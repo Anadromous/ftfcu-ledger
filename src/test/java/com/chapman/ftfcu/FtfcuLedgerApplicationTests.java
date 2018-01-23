@@ -1,4 +1,4 @@
-package com.champman.ftfcu;
+package com.chapman.ftfcu;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

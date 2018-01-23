@@ -10,12 +10,12 @@ import com.chapman.ftfcu.model.CheckingData;
 public interface CheckingDataRepository extends CrudRepository<CheckingData, Long> {
 
 	List<CheckingData> findAll();
-	List<CheckingData> findByTransactionId(String transactionId);
+	CheckingData findByTransactionId(String transactionId);
 	List<CheckingData> findByPostingDateGreaterThan(Date date);
 	List<CheckingData> findByPostingDateLessThan(Date date);
 	//List<CheckingData> loadRawCheckingData(String file);
 	
-	CheckingData save(CheckingData data);
+	//CheckingData save(CheckingData data);
 	//int saveAndUpdateCategories(CheckingData b);
 	
 	

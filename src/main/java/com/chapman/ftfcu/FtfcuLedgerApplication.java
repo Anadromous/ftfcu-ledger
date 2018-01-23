@@ -15,8 +15,8 @@ public class FtfcuLedgerApplication implements CommandLineRunner {
 		SpringApplication.run(FtfcuLedgerApplication.class, args);
 	}
 	
-	@Autowired
-	private UserService userService;
+/*	@Autowired
+	private UserService userService;*/
 	
 	@Override
 	public void run(String... args) throws Exception{

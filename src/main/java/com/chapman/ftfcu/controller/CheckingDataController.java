@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,12 +26,17 @@ public class CheckingDataController {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@Autowired 
+	
 	private CheckingDataRepository rawDataRepository;
+	
+	public CheckingDataController(CheckingDataRepository rawDataRepository) {
+		this.rawDataRepository=rawDataRepository;
+	}
 	
 	List<CheckingData> checking = new ArrayList<>();
 	
-	@RequestMapping(method = RequestMethod.GET)
+	//@RequestMapping(method = RequestMethod.GET)
+	@GetMapping("/house")
 	public List<CheckingData> getCheckingData() {
 		LOG.warn("Getting users...");
 		System.out.println("Getting users prnt...");
