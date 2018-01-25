@@ -24,10 +24,10 @@ import javax.persistence.Transient;
  *
  */
 @Entity
-@Table(name = "raw_data")
+@Table(name = "raw_check_data")
 public class CheckingData extends BaseObject implements Serializable {
 
-	private static final long serialVersionUID = 2221751117227020663L;
+	private static final long serialVersionUID = -6075022106758113005L;
 	//Transaction ID	Posting Date	Effective Date	Transaction Type	
 	//Amount	Check Number	Reference Number	Payee	Memo	Transaction Category	Type	Balance
 	private Long id;

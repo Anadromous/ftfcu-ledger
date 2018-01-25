@@ -1,8 +1,11 @@
 package com.chapman.ftfcu.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -10,22 +13,27 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.*;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
 import com.chapman.ftfcu.model.CheckingData;
+import com.chapman.ftfcu.repository.CheckingDataRepository;
 import com.chapman.ftfcu.service.CheckingDataService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(CheckingDataController.class)
+@ContextConfiguration(classes = {CheckingDataService.class, CheckingDataRepository.class})
 public class CheckingDataControllerTest {
 
-/*	@Autowired
-	private CheckingDataRepository checkingDataRepository;*/
+	private static final Logger LOG = LoggerFactory.getLogger(CheckingDataControllerTest.class);
 	
 	@Autowired
     private MockMvc mvc;
@@ -51,12 +59,26 @@ public class CheckingDataControllerTest {
     	
     	List<CheckingData> allChecking = Arrays.asList(checkingData);
     	
+    	LOG.info("allChecking: "+allChecking.get(0).toString());
+    	
     	given(checkingDataService.findAll()).willReturn(allChecking);
     	
-    	mvc.perform(get("/checking/house").contentType(MediaType.APPLICATION_JSON))
-    	.andExpect(status().isOk())
-    	.andExpect(model().size(1));
+    	LOG.info("here is mvc: "+mvc.getClass().getName());
+    	
+    	ResultActions action = mvc.perform(get("/checking/house"));
+    	LOG.info("action: "+action.toString());
+    	//action.header("Accept-Language", "en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4")
+   			/*                 .accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));*/
+    			
+    			
+    	//.contentType(MediaType.APPLICATION_JSON_UTF8))
+    	//.andExpect(status().isOk())
     	//.andExpect(jsonPath("$.payload[0].type").value("Debit"));
+    	//;
+    	//.andExpect(model().size(1));
+    	
     }
     
     /**

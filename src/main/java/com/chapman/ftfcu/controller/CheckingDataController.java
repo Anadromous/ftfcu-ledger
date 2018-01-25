@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chapman.ftfcu.model.CheckingData;
@@ -26,11 +25,11 @@ public class CheckingDataController {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
 	private CheckingDataRepository rawDataRepository;
-	
-	public CheckingDataController(CheckingDataRepository rawDataRepository) {
-		this.rawDataRepository=rawDataRepository;
+		
+	@Autowired
+	public void setCheckDataRepository(CheckingDataRepository checkingDataRepository) {
+		this.rawDataRepository=checkingDataRepository;
 	}
 	
 	List<CheckingData> checking = new ArrayList<>();
@@ -38,8 +37,9 @@ public class CheckingDataController {
 	//@RequestMapping(method = RequestMethod.GET)
 	@GetMapping("/house")
 	public List<CheckingData> getCheckingData() {
-		LOG.warn("Getting users...");
-		System.out.println("Getting users prnt...");
+		if(rawDataRepository == null) {
+			LOG.warn("NuLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
+		}
 		return rawDataRepository.findAll();
 	}
 	

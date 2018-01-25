@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../user.service";
-import {User} from "../User";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../user.service';
+import {User} from '../User';
 import {ActivatedRoute, Router} from '@angular/router';
 
 
@@ -34,13 +34,13 @@ export class UserCreateComponent implements OnInit, OnDestroy {
       lastName: new FormControl('', Validators.required),
       email: new FormControl('', [
         Validators.required,
-        Validators.pattern("[^ @]*@[^ @]*")
+        Validators.pattern('[^ @]*@[^ @]*')
       ])
     });
 
 
 
-    if (this.id) { //edit form
+    if (this.id) { // edit form
       this.userService.findById(this.id).subscribe(
         user => {
           this.id = user.id;
@@ -66,13 +66,13 @@ export class UserCreateComponent implements OnInit, OnDestroy {
   onSubmit() {
     if (this.userForm.valid) {
       if (this.id) {
-        let user: User = new User(this.id,
+        const user: User = new User(this.id,
           this.userForm.controls['firstName'].value,
           this.userForm.controls['lastName'].value,
           this.userForm.controls['email'].value);
         this.userService.updateUser(user).subscribe();
       } else {
-        let user: User = new User(null,
+        const user: User = new User(null,
           this.userForm.controls['firstName'].value,
           this.userForm.controls['lastName'].value,
           this.userForm.controls['email'].value);
