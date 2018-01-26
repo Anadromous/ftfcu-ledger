@@ -3,8 +3,8 @@ export class CheckingData {
 
   id: number;
   transactionId: string;
-  postingDate: DatePipe;
-  effectiveDate: DatePipe;
+  postingDate: string;
+  effectiveDate: string;
   transactionType: string;
   amount: number;
   checkNumber: number;
@@ -17,7 +17,7 @@ export class CheckingData {
   balance: number;
   category: string;
 
-  constructor(id: number, transactionId: string, postingDate: DatePipe, effectiveDate: DatePipe, transactionType: string, amount: number,
+  constructor(id: number, transactionId: string, postingDate: string, effectiveDate: string, transactionType: string, amount: number,
     checkNumber: number, referenceNumber: string, payee: string, memo: string, extDesc: string, transactionCategory: string,
     type: string, balance: number, category: string) {
     this.id = id;
